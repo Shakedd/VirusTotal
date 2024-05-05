@@ -12,7 +12,10 @@ def scanFile(APIkey, file_path):
     if isinstance(json_result, list):
         for result in json_result:
             if result.get('response_code') == 1:
-                return json_result
+                if json_result.get('positives', 0) == 0:
+                    return "your file is secure"
+                else:
+                    return "your file is not secure"
     else:
         return "Eror, something went wrong"
     
