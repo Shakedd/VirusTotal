@@ -14,5 +14,5 @@ def scanFile(APIkey, file_path):
     else:
         return "Eror, something went wrong"
     
-scan_id = scanFile(APIkey, file_path)
-print("File submitted for scanning. Scan ID:", scan_id)
+finalResult = scanFile(APIkey, file_path)
+print("File submitted for scanning. your result:", finalResult)
