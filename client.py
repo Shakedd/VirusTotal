@@ -9,8 +9,10 @@ def scanFile(APIkey, file_path):
     request = requests.post(url, files=files, params=params)
     json_result = request.json()
 
-    if json_result['response_code'] == 1:
-        return json_result
+    if isinstance(json_result, list):
+        for result in json_result:
+            if result.get('response_code') == 1:
+                return json_result
     else:
         return "Eror, something went wrong"
     
