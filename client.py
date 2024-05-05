@@ -7,10 +7,10 @@ def scanFile(APIkey, file_path):
     params = {'apikey': APIkey}
     files = {'file': open(file_path, 'rb')}
     request = requests.post(url, files=files, params=params)
-    result = request.json()
+    json_result = request.json()
 
-    if result['response_code'] == 1:
-        return result
+    if json_result['response_code'] == 1:
+        return json_result
     else:
         return "Eror, something went wrong"
     
