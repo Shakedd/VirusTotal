@@ -9,6 +9,7 @@ def scanFile(APIkey, file_path):
     request = requests.post(url, files=files, params=params)
     json_result = request.json()
 
+    ## in case json_result is a list:
     if isinstance(json_result, list):
         for result in json_result:
             if result.get('response_code') == 1:
@@ -16,7 +17,16 @@ def scanFile(APIkey, file_path):
                     return "your file is secure"
                 else:
                     return "your file is not secure"
+        ## in case none of the conditions work:
         return "Error, can't determine the file security status"
+    ## in case json_result is not a list:
+    elif isinstance(json_result, list) == False:
+        if json_result.get('response_code') == 1:
+                if json_result.get('positives', 0) == 0:
+                    return "your file is secure"
+                else:
+                    return "your file is not secure"
+        ## in case something went wrong:
     else:
         return "Eror, something went wrong"
     
