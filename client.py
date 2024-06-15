@@ -6,7 +6,7 @@ def scanFile(APIkey, file_path):
     url= 'https://www.virustotal.com/vtapi/v2/file/scan'
     params = {'apikey': APIkey}
     files = {'file': open(file_path, 'rb')}
-    request = requests.post(url, files=files, params=params)
+    request = requests.post(url, data=params, files=files)
     json_result = request.json()
     print("Response from VirusTotal API:", json_result)  # Print response for debugging
 
