@@ -20,9 +20,13 @@ def ServerResponse(file_id)
    request = requests.get(urlGet, params=params)
    
    if request.status_code == 200:
-       detected_files = []
+       detected_items = []
         if request.headers['Content-Type'] == 'application/json':
-            return request.json()['resource']
+            respond= request.json()
+            for result in respond['scans'].items():
+                if result['detected'] == True:
+                    detected_items.append(result)
+            return detected_items
     else:
         print("Error, something went wrong.")
    
