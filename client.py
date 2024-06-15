@@ -1,7 +1,4 @@
 import requests
-file_path= input("enter the path to the file you want to scan: ")
-APIkey= '631396087b7bdcd13074d93bccf5a69c8b5462ee5cc9018ddc4e1354e0df8137'
-
 def UploadFileToServer(APIkey, file_path):
     urlPost= 'https://www.virustotal.com/vtapi/v2/file/scan'
     params = {'apikey': APIkey}
@@ -30,6 +27,8 @@ def ServerResponse(file_id):
     else:
         print("Error, something went wrong.")
    
+file_path= input("enter the path to the file you want to scan: ")
+APIkey= '631396087b7bdcd13074d93bccf5a69c8b5462ee5cc9018ddc4e1354e0df8137'
 file_id = UploadFileToServer(APIkey, file_path)
 finalResult = ServerResponse(file_id)
 if finalResult:
