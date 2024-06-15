@@ -19,7 +19,7 @@ def ServerResponse(file_id):
     if request.status_code == 200:
         if request.headers['Content-Type'] == 'application/json':
             respond= request.json()
-            for result in respond['scans'].items():
+            for engine, result in respond['scans'].items():
                 if result['detected'] == True:
                     return True
                 else:
@@ -27,7 +27,7 @@ def ServerResponse(file_id):
     else:
         print("Error, something went wrong.")
    
-file_path= 'C:\\Users\\שקד\\Desktop'
+file_path= 'C:\Program Files\Google\Drive File Stream\launch.bat'
 APIkey= '631396087b7bdcd13074d93bccf5a69c8b5462ee5cc9018ddc4e1354e0df8137'
 file_id = UploadFileToServer(file_path)
 finalResult = ServerResponse(file_id)
