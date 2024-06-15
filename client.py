@@ -9,6 +9,7 @@ def scanFile(APIkey, file_path):
     request = requests.post(url, data=params, files=files)
     
     if request.status_code == 200:
+        if request.headers['Content-Type'] == 'application/json':
             return request.json()['resorce']
     else:
         print("Error, something went wrong.")
