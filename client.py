@@ -25,6 +25,8 @@ def ServerResponse(file_id)
             for result in respond['scans'].items():
                 if result['detected'] == True:
                     return True
+                else:
+                    return False
     else:
         print("Error, something went wrong.")
    
