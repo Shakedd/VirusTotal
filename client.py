@@ -10,13 +10,22 @@ def UploadFileToServer(APIkey, file_path):
     
     if request.status_code == 200:
         if request.headers['Content-Type'] == 'application/json':
-            return request.json()['resorce']
+            return request.json()['resource']
     else:
         print("Error, something went wrong.")
         
 def ServerResponse(file_id)
    urlGet= 'https://www.virustotal.com/vtapi/v2/file/report'
+   params = {'apikey': APIkey, 'resource': file_id}
+   request = requests.get(urlGet, params=params)
+   
+   if request.status_code == 200:
+       detected_files = []
+        if request.headers['Content-Type'] == 'application/json':
+            return request.json()['resource']
+    else:
+        print("Error, something went wrong.")
    
 file_id = UploadFileToServer(APIkey, file_path)
-finalResult = scanFile(APIkey, file_path)
+finalResult = UploadFileToServer(APIkey, file_path)
 print("File submitted for scanning. your result:", finalResult)
