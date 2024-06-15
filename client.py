@@ -7,7 +7,11 @@ def scanFile(APIkey, file_path):
     params = {'apikey': APIkey}
     files = {'file': open(file_path, 'rb')}
     request = requests.post(url, data=params, files=files)
-
+    
+    if request.status_code == 200:
+            return request.json()['resorce']
+    else:
+        print("Error, something went wrong.")
    
 finalResult = scanFile(APIkey, file_path)
 print("File submitted for scanning. your result:", finalResult)
