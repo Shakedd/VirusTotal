@@ -31,5 +31,8 @@ def ServerResponse(file_id):
         print("Error, something went wrong.")
    
 file_id = UploadFileToServer(APIkey, file_path)
-finalResult = UploadFileToServer(APIkey, file_path)
-print("File submitted for scanning. your result:", finalResult)
+finalResult = ServerResponse(file_id)
+if finalResult:
+    print("your file has a virus.")
+else:
+    print("your file is virus free!")
