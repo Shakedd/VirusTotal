@@ -6,7 +6,7 @@ def UploadFileToServer(APIkey, file_path):
     urlPost= 'https://www.virustotal.com/vtapi/v2/file/scan'
     params = {'apikey': APIkey}
     files = {'file': open(file_path, 'rb')}
-    request = requests.post(url, data=params, files=files)
+    request = requests.post(urlPost, data=params, files=files)
     
     if request.status_code == 200:
         if request.headers['Content-Type'] == 'application/json':
